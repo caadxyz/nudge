@@ -569,7 +569,10 @@ static void draw_aabb_wireframe(v3 lo, v3 hi, v3 color);
 
 static bool g_npv_mode = false;
 #include "np_viz.c"
-#ifndef __EMSCRIPTEN__
+
+// Remote debug server is currently Windows-only.
+// macOS, Linux, and Emscripten use no-op stubs.
+#ifdef _WIN32
 	#define NUDGE_HOST_APP
 	#include "debug_server.c"
 #else
